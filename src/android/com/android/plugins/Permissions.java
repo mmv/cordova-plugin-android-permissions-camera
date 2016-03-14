@@ -1,4 +1,4 @@
-package com.exosite.plugins;
+package com.android.plugins;
 
 import android.os.Build;
 
@@ -49,7 +49,7 @@ public class Permissions extends CordovaPlugin {
         if (permission == null || permission.length() == 0 || permission.length() > 1) {
             JSONObject returnObj = new JSONObject();
             addProperty(returnObj, KEY_ERROR, ACTION_HAS_PERMISSION);
-            addProperty(returnObj, KEY_MESSAGE, "One time one permission");
+            addProperty(returnObj, KEY_MESSAGE, "One time one permission only.");
             callbackContext.error(returnObj);
         } else {
             try {
@@ -69,13 +69,12 @@ public class Permissions extends CordovaPlugin {
             addProperty(returnObj, KEY_MESSAGE, "Operation unsupported.");
             callbackContext.error(returnObj);
             return;
-        }
-
-        if (permission == null || permission.length() == 0 || permission.length() > 1) {
+        } else if (permission == null || permission.length() == 0 || permission.length() > 1) {
             JSONObject returnObj = new JSONObject();
             addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
-            addProperty(returnObj, KEY_MESSAGE, "Wrong");
+            addProperty(returnObj, KEY_MESSAGE, "One time one permission only.");
             callbackContext.error(returnObj);
+            return;
         } else {
             permissionsCallback = callbackContext;
             try {
@@ -95,7 +94,12 @@ public class Permissions extends CordovaPlugin {
 
         //Just call hasPermission again to verify
         JSONObject returnObj = new JSONObject();
-        addProperty(returnObj, ACTION_HAS_PERMISSION, cordova.hasPermission(permissions[0]));
+        if (permissions != null && permissions.length > 0) {
+            addProperty(returnObj, ACTION_HAS_PERMISSION, cordova.hasPermission(permissions[0]));
+        } else {
+            addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
+            addProperty(returnObj, KEY_MESSAGE, "Unknown error.");
+        }
         permissionsCallback.success(returnObj);
     }
 
