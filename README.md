@@ -10,7 +10,7 @@ For old Android plugins you (developers) are using may not support this new mech
 Installation
 --------
 
-```
+```bash
 cordova plugin add cordova-plugin-android-permissions@0.2.1
 ```
 
