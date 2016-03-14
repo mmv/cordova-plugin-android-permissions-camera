@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-android-permissions"
+        version="0.1.0">
+
+  <name>Permissions</name>
+
+  <description>
+    Android 6.0 permissions check.
+  </description>
+
+  <author>Jason Yang@Exosite</author>
+
+  <license>Exosite</license>
+
+  <engines>
+    <engine name="cordova" version=">=5.0.0"/>
+  </engines>
+
+  <js-module src="www/permissions.js" name="Permissions">
+    <clobbers target="window.plugins.permissions" />
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Permissions">
+        <param name="android-package" value="com.exosite.plugins.Permissions" />
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/com/exosite/plugins/Permissions.java" target-dir="src/com/exosite/plugins"/>
+  </platform>
+
+</plugin>
