@@ -6,11 +6,9 @@
 
   <name>Permissions</name>
 
-  <description>
-    Android 6.0 permissions check.
-  </description>
+  <description>Android 6.0 permissions check.</description>
 
-  <author>Jason Yang@Exosite</author>
+  <author>Jason Yang</author>
 
   <license>Exosite</license>
 
