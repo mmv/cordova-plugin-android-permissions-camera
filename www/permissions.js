@@ -154,38 +154,6 @@ function Permissions() {
     this.WRITE_SYNC_SETTINGS = 'android.permission.WRITE_SYNC_SETTINGS';
     this.WRITE_USER_DICTIONARY = 'android.permission.WRITE_USER_DICTIONARY';
     this.WRITE_VOICEMAIL = 'com.android.voicemail.permission.WRITE_VOICEMAIL';
-
-    this.ACCESSIBILITY_FEATURES = 'android.permission-group.ACCESSIBILITY_FEATURES';
-    this.ACCOUNTS = 'android.permission-group.ACCOUNTS';
-    this.AFFECTS_BATTERY = 'android.permission-group.AFFECTS_BATTERY';
-    this.APP_INFO = 'android.permission-group.APP_INFO';
-    this.AUDIO_SETTINGS = 'android.permission-group.AUDIO_SETTINGS';
-    this.BLUETOOTH_NETWORK = 'android.permission-group.BLUETOOTH_NETWORK';
-    this.BOOKMARKS = 'android.permission-group.BOOKMARKS';
-    this.CALENDAR = 'android.permission-group.CALENDAR';
-    this.CAMERA = 'android.permission-group.CAMERA';
-    this.COST_MONEY = 'android.permission-group.COST_MONEY';
-    this.DEVELOPMENT_TOOLS = 'android.permission-group.DEVELOPMENT_TOOLS';
-    this.DEVICE_ALARMS = 'android.permission-group.DEVICE_ALARMS';
-    this.DISPLAY = 'android.permission-group.DISPLAY';
-    this.HARDWARE_CONTROLS = 'android.permission-group.HARDWARE_CONTROLS';
-    this.LOCATION = 'android.permission-group.LOCATION';
-    this.MESSAGES = 'android.permission-group.MESSAGES';
-    this.MICROPHONE = 'android.permission-group.MICROPHONE';
-    this.NETWORK = 'android.permission-group.NETWORK';
-    this.PERSONAL_INFO = 'android.permission-group.PERSONAL_INFO';
-    this.PHONE_CALLS = 'android.permission-group.PHONE_CALLS';
-    this.SCREENLOCK = 'android.permission-group.SCREENLOCK';
-    this.SOCIAL_INFO = 'android.permission-group.SOCIAL_INFO';
-    this.STATUS_BAR = 'android.permission-group.STATUS_BAR';
-    this.STORAGE = 'android.permission-group.STORAGE';
-    this.SYNC_SETTINGS = 'android.permission-group.SYNC_SETTINGS';
-    this.SYSTEM_CLOCK = 'android.permission-group.SYSTEM_CLOCK';
-    this.SYSTEM_TOOLS = 'android.permission-group.SYSTEM_TOOLS';
-    this.USER_DICTIONARY = 'android.permission-group.USER_DICTIONARY';
-    this.VOICEMAIL = 'android.permission-group.VOICEMAIL';
-    this.WALLPAPER = 'android.permission-group.WALLPAPER';
-    this.WRITE_USER_DICTIONARY = 'android.permission-group.WRITE_USER_DICTIONARY';
 }
 
 Permissions.prototype = {

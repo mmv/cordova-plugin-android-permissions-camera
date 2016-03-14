@@ -11,25 +11,49 @@ Installation
 --------
 
 ```bash
-cordova plugin add cordova-plugin-android-permissions@0.2.1
+cordova plugin add cordova-plugin-android-permissions@0.3.0
 ```
 
 Usage
 --------
 
+### API
+
 ```javascript
 var permissions = window.plugins.permissions;
-permissions.hasPermission(checkPermissionCallback);
+permissions.hasPermission(successCallback, errorCallback, permission);
+permissions.requestPermission(successCallback, errorCallback, permission);
+```
+
+### Permission Name
+
+Following the Android design. See [Manifest.permission](http://developer.android.com/intl/zh-tw/reference/android/Manifest.permission.html).
+```javascript
+// Example
+permissions.ACCESS_COARSE_LOCATION
+permissions.CAMERA
+permissions.GET_ACCOUNTS
+permissions.READ_CONTACTS
+permissions.READ_CALENDAR
+...
+```
+
+Example
+--------
+
+```javascript
+var permissions = window.plugins.permissions;
+permissions.hasPermission(checkPermissionCallback, null, permissions.CAMERA);
 
 function checkPermissionCallback(status) {
   if(!status.hasPermission) {
     var errorCallback = function() {
-    console.warn('Camera permission is not turned on');
+      console.warn('Camera permission is not turned on');
     }
 
     permissions.requestPermission(function(status) {
       if( !status.hasPermission ) errorCallback();
-    }, errorCallback, permissions.Camera);
+    }, errorCallback, permissions.CAMERA);
   }
 }
 ```
