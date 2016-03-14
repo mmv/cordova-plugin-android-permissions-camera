@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-android-permissions",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Android 6.0 permissions check.",
   "cordova": {
     "id": "cordova-plugin-android-permissions",
@@ -23,7 +23,7 @@
     }
   ],
   "author": "Jason Yang",
-  "license": "Exosite",
+  "license": "BSD",
   "bugs": {
     "url": "https://github.com/NeoLSN/cordova-plugin-android-permission/issues"
   },
