@@ -51,6 +51,10 @@ public class Permissions extends CordovaPlugin {
             addProperty(returnObj, KEY_ERROR, ACTION_HAS_PERMISSION);
             addProperty(returnObj, KEY_MESSAGE, "One time one permission only.");
             callbackContext.error(returnObj);
+        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            JSONObject returnObj = new JSONObject();
+            addProperty(returnObj, ACTION_HAS_PERMISSION, true);
+            permissionsCallback.success(returnObj);
         } else {
             try {
                 JSONObject returnObj = new JSONObject();
@@ -63,18 +67,15 @@ public class Permissions extends CordovaPlugin {
     }
 
     private void requestPermissionAction(CallbackContext callbackContext, JSONArray permission) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            JSONObject returnObj = new JSONObject();
-            addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
-            addProperty(returnObj, KEY_MESSAGE, "Operation unsupported.");
-            callbackContext.error(returnObj);
-            return;
-        } else if (permission == null || permission.length() == 0 || permission.length() > 1) {
+        if (permission == null || permission.length() == 0 || permission.length() > 1) {
             JSONObject returnObj = new JSONObject();
             addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
             addProperty(returnObj, KEY_MESSAGE, "One time one permission only.");
             callbackContext.error(returnObj);
-            return;
+        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            JSONObject returnObj = new JSONObject();
+            addProperty(returnObj, ACTION_HAS_PERMISSION, true);
+            permissionsCallback.success(returnObj);
         } else {
             permissionsCallback = callbackContext;
             try {
