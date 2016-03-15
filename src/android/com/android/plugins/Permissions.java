@@ -82,6 +82,10 @@ public class Permissions extends CordovaPlugin {
                 cordova.requestPermission(this, REQUEST_CODE_ENABLE_PERMISSION, permission.getString(0));
             } catch (JSONException e) {
                 e.printStackTrace();
+                JSONObject returnObj = new JSONObject();
+                addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
+                addProperty(returnObj, KEY_MESSAGE, "Request permission has been denied.");
+                callbackContext.error(returnObj);
                 permissionsCallback = null;
             }
         }
@@ -93,19 +97,20 @@ public class Permissions extends CordovaPlugin {
             return;
         }
 
-        //Just call hasPermission again to verify
         JSONObject returnObj = new JSONObject();
         if (permissions != null && permissions.length > 0) {
+            //Call hasPermission again to verify
             addProperty(returnObj, ACTION_HAS_PERMISSION, cordova.hasPermission(permissions[0]));
+            permissionsCallback.success(returnObj);
         } else {
             addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
             addProperty(returnObj, KEY_MESSAGE, "Unknown error.");
+            permissionsCallback.error(returnObj);
         }
-        permissionsCallback.success(returnObj);
+        permissionsCallback = null;
     }
 
     private void addProperty(JSONObject obj, String key, Object value) {
-        //Believe exception only occurs when adding duplicate keys, so just ignore it
         try {
             if (value == null) {
                 obj.put(key, JSONObject.NULL);
@@ -113,6 +118,7 @@ public class Permissions extends CordovaPlugin {
                 obj.put(key, value);
             }
         } catch (JSONException ignored) {
+            //Believe exception only occurs when adding duplicate keys, so just ignore it
         }
     }
 }

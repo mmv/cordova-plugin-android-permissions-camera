@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-android-permissions",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Android 6.0 permissions check.",
   "cordova": {
     "id": "cordova-plugin-android-permissions",
