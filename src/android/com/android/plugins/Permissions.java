@@ -54,7 +54,7 @@ public class Permissions extends CordovaPlugin {
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             JSONObject returnObj = new JSONObject();
             addProperty(returnObj, ACTION_HAS_PERMISSION, true);
-            permissionsCallback.success(returnObj);
+            callbackContext.success(returnObj);
         } else {
             try {
                 JSONObject returnObj = new JSONObject();
@@ -75,7 +75,7 @@ public class Permissions extends CordovaPlugin {
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             JSONObject returnObj = new JSONObject();
             addProperty(returnObj, ACTION_HAS_PERMISSION, true);
-            permissionsCallback.success(returnObj);
+            callbackContext.success(returnObj);
         } else {
             permissionsCallback = callbackContext;
             try {
