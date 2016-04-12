@@ -11,7 +11,7 @@ Installation
 --------
 
 ```bash
-cordova plugin add cordova-plugin-android-permissions@0.5.1
+cordova plugin add cordova-plugin-android-permissions@0.6.0
 ```
 
 Usage
