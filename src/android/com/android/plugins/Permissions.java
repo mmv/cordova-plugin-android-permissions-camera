@@ -36,7 +36,16 @@ public class Permissions extends CordovaPlugin {
             if (ACTION_REQUEST_PERMISSION.equals(action)) {
                 cordova.getThreadPool().execute(new Runnable() {
                     public void run() {
-                        requestPermissionAction(callbackContext, args);
+                        try {
+                            requestPermissionAction(callbackContext, args);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            JSONObject returnObj = new JSONObject();
+                            addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
+                            addProperty(returnObj, KEY_MESSAGE, "Request permission has been denied.");
+                            callbackContext.error(returnObj);
+                            permissionsCallback = null;
+                        }
                     }
                 });
                 return true;
@@ -66,7 +75,7 @@ public class Permissions extends CordovaPlugin {
         }
     }
 
-    private void requestPermissionAction(CallbackContext callbackContext, JSONArray permission) {
+    private void requestPermissionAction(CallbackContext callbackContext, JSONArray permission) throws Exception {
         if (permission == null || permission.length() == 0 || permission.length() > 1) {
             JSONObject returnObj = new JSONObject();
             addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
@@ -76,18 +85,13 @@ public class Permissions extends CordovaPlugin {
             JSONObject returnObj = new JSONObject();
             addProperty(returnObj, ACTION_HAS_PERMISSION, true);
             callbackContext.success(returnObj);
+        } else if (cordova.hasPermission(permission.getString(0))) {
+            JSONObject returnObj = new JSONObject();
+            addProperty(returnObj, ACTION_HAS_PERMISSION, true);
+            callbackContext.success(returnObj);
         } else {
             permissionsCallback = callbackContext;
-            try {
-                cordova.requestPermission(this, REQUEST_CODE_ENABLE_PERMISSION, permission.getString(0));
-            } catch (JSONException e) {
-                e.printStackTrace();
-                JSONObject returnObj = new JSONObject();
-                addProperty(returnObj, KEY_ERROR, ACTION_REQUEST_PERMISSION);
-                addProperty(returnObj, KEY_MESSAGE, "Request permission has been denied.");
-                callbackContext.error(returnObj);
-                permissionsCallback = null;
-            }
+            cordova.requestPermission(this, REQUEST_CODE_ENABLE_PERMISSION, permission.getString(0));
         }
     }
 
