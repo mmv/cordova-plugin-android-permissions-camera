@@ -17,6 +17,10 @@
   <js-module src="www/permissions.js" name="Permissions">
     <clobbers target="window.plugins.permissions" />
   </js-module>
+    <js-module src="www/PictureAccess.js" name="PictureAccess">
+      <clobbers target="PictureAccess" />
+    </js-module>
+
 
   <!-- android -->
   <platform name="android">
@@ -33,5 +37,18 @@
 
     <source-file src="src/android/com/android/plugins/Permissions.java" target-dir="src/com/android/plugins"/>
   </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PictureAccess">
+                <param name="ios-package" value="PictureAccess" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/PictureAccess.h" />
+        <source-file src="src/ios/PictureAccess.m" />
+    </platform>
+
 
 </plugin>
