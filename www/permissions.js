@@ -156,15 +156,31 @@ function Permissions() {
     this.WRITE_VOICEMAIL = 'com.android.voicemail.permission.WRITE_VOICEMAIL';
 }
 
+function deprecated(name) {
+  console.warn("Calling window.plugins.permissions." + name + " with the successCallback as first argument is deprecated");
+  console.warn("The new signature is '" + name + "(permission, successCallback, errorCallback)'");
+}
+
 Permissions.prototype = {
-    hasPermission: function(successCallback, errorCallback, params) {
-        cordova.exec(successCallback, errorCallback, permissionsName, 'hasPermission', [params]);
+    hasPermission: function(permission, successCallback, errorCallback) {
+        if (typeof permission === "function") {
+            deprecated("hasPermission")
+            successCallback = arguments[0];
+            errorCallback = arguments[1];
+            permission = arguments[2];
+        }
+        cordova.exec(successCallback, errorCallback, permissionsName, 'hasPermission', [permission]);
     },
-    requestPermission: function(successCallback, errorCallback, params) {
-        cordova.exec(successCallback, errorCallback, permissionsName, 'requestPermission', [params]);
+    requestPermission: function(permission, successCallback, errorCallback) {
+        if (typeof permission === "function") {
+            deprecated("requestPermission")
+            successCallback = arguments[0];
+            errorCallback = arguments[1];
+            permission = arguments[2];
+        }
+        cordova.exec(successCallback, errorCallback, permissionsName, 'requestPermission', [permission]);
     }
 };
-
 Permissions.install = function() {
     if (!window.plugins) {
         window.plugins = {};
