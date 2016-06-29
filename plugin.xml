@@ -27,6 +27,9 @@
       </feature>
     </config-file>
     <uses-permission android:name="android.permission.CAMERA" />
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+	<uses-permission android:name="android.permission.CAMERA" />
+    </config-file>
 
     <source-file src="src/android/com/android/plugins/Permissions.java" target-dir="src/com/android/plugins"/>
   </platform>
